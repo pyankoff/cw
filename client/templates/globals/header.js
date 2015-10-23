@@ -1,6 +1,6 @@
 Template.header.helpers({
   brandLink() {
-    let login = FlowRouter.path( 'login' ),
+    let login = FlowRouter.path( 'atSignIn' ),
         index = FlowRouter.path( 'index' );
     return !Meteor.loggingIn() && !Meteor.userId() ? login : index;
   }

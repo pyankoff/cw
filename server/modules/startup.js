@@ -1,10 +1,21 @@
 let startup = () => {
   _setBrowserPolicies();
-  _generateAccounts();
+  _addTwitterLogin();
 };
 
 var _setBrowserPolicies = () => {};
 
-var _generateAccounts = () => Modules.server.generateAccounts();
+var _addTwitterLogin = () => {
+  Meteor.startup(function () {
+    Accounts.loginServiceConfiguration.remove({
+      service: "twitter"
+    });
+    Accounts.loginServiceConfiguration.insert({
+      service: "twitter",
+      consumerKey: Meteor.settings.private.twitterConsumerKey,
+      secret: Meteor.settings.private.twitterSecret
+    });
+  });
+};
 
 Modules.server.startup = startup;
