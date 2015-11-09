@@ -1,6 +1,6 @@
 let startup = () => {
   _setBrowserPolicies();
-  _addTwitterLogin();
+  // _addTwitterLogin();
 };
 
 var _setBrowserPolicies = () => {};
