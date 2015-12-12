@@ -8,7 +8,6 @@ accounts-base
 jquery
 themeteorchef:jquery-validation
 twbs:bootstrap
-browser-policy
 
 
 themeteorchef:bert
@@ -32,3 +31,5 @@ tracker
 useraccounts:flow-routing
 useraccounts:bootstrap
 accounts-twitter
+okgrow:analytics
+coffeescript
