@@ -1,2 +1,3 @@
 Meteor.publish 'all', () ->
-	Courses.find {}
+	[Courses.find {}
+	Lectures.find {}]

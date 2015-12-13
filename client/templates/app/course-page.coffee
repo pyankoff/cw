@@ -2,6 +2,8 @@ Template.coursePage.helpers
   course: ->
     id = FlowRouter.getParam 'id'
     Courses.findOne(id)
+
+Template.progress.helpers
   progress: ->
     count = 0
     for i, lecture of @lectures

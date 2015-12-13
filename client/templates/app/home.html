@@ -3,6 +3,7 @@
     <div class="col-xs-2 col-sm-3 col-md-2">
       {{#each courses}}
         <a href="{{pathFor 'course' id=_id}}">{{name}}</a>
+        {{> progress}}
       {{/each}}
     </div>
   </div>
