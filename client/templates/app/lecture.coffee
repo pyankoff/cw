@@ -1,16 +1,16 @@
-Template.item.onCreated ->
+Template.lecture.onCreated ->
   window.onYouTubeIframeAPIReady = () ->
     @player = new YT.Player "player", {
       width: "100%",
-      height: "400",
+      height: "250",
       videoId: "Ei8CFin00PY"
     }
   YT.load()
   Meteor.setInterval ->
     Session.set 'progress',
-        Math.round @player?.getCurrentTime() / @player?.getDuration() * 100
+        percentage @player?.getCurrentTime() / @player?.getDuration()
   , 3000
 
-Template.item.helpers
+Template.lecture.helpers
   progress: ->
     Session.get 'progress'

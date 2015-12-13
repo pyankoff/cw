@@ -26,7 +26,6 @@ fourseven:scss
 stevezhu:lodash
 reactive-var
 reactive-dict
-aldeed:collection2
 tracker
 useraccounts:flow-routing
 useraccounts:bootstrap
@@ -34,5 +33,7 @@ accounts-twitter
 okgrow:analytics
 coffeescript
 fortawesome:fontawesome
+arillo:flow-router-helpers
 
 adrianliaw:youtube-iframe-api
+kevohagan:sweetalert

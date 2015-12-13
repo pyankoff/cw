@@ -4,6 +4,15 @@
 
 @import "components/login";
 
-.side-panel {
-  padding-top: 50px;
+.content {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.content {
+  span {
+    display: table-cell;
+    text-align: center;
+  }
 }
