@@ -1,3 +1,5 @@
+progressMonitor =
+
 Template.lecture.helpers
   lecture: ->
     id = FlowRouter.getParam 'id'
@@ -12,15 +14,18 @@ Template.lecture.onCreated ->
     self.subscribe 'lecture', id
 
   window.onYouTubeIframeAPIReady = () ->
-    Meteor.autorun ->
+    self.autorun ->
       lecture = Lectures.findOne id
-      @player = new YT.Player "player", {
+      self.player = new YT.Player "player", {
         width: "100%",
         height: "250",
         videoId: lecture.ytId
       }
   YT.load()
-  Meteor.setInterval ->
+  progressMonitor = Meteor.setInterval ->
     Session.set 'progress',
-        percentage @player?.getCurrentTime() / @player?.getDuration()
+        percentage self.player?.getCurrentTime() / self.player?.getDuration()
   , 3000
+
+Template.lecture.onDestroyed ->
+  Meteor.clearInterval progressMonitor

@@ -1,6 +1,6 @@
 Template.courseSearch.helpers
   courseIndex: -> CourseIndex
-  inputAttributes: -> {class: ""}
+  inputAttributes: -> {id: "search-input"}
   loadMoreAttr: -> {class: "btn btn-default load-more"}
 
 Template.courseSearch.events

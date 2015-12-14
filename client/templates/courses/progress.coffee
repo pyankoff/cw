@@ -2,7 +2,7 @@ Template.progress.helpers
   progress: ->
     count = 0
     for i, lecture of @lectures
-      done = Meteor.user().profile.done[lecture.id]
+      done = Meteor.user()?.profile.done[lecture.id]
       n = _.filter done, (x) ->
           x
         .length
