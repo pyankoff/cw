@@ -1,0 +1,12 @@
+<template name="courseItem">
+  <div class="col-xs-2 col-sm-3 col-md-2">
+    {{#if __originalId}}
+      <a href="{{pathFor 'course' id=__originalId}}">{{name}}</a>
+    {{else}}
+      <a href="{{pathFor 'course' id=_id}}">{{name}}</a>
+    {{/if}}
+    {{#if signedUp}}
+      {{> progress}}
+    {{/if}}
+  </div>
+</template>

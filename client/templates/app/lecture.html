@@ -1,17 +1,18 @@
 <template name="lecture">
-  <h3>Lecture 3 - The Wave Function</h3>
-  <div class="col-sm-6">
-    <div id="player"></div>
-    <div>
-      Progress: {{progress}}
+  {{#with lecture}}
+    <h3>{{name}}</h3>
+    <div class="col-sm-6">
+      <div id="player"></div>
+      <div>
+        Progress: {{progress}}
+      </div>
     </div>
-  </div>
-  <div class="col-sm-6 side-panel">
-    <h4>Readings, Assignments</h4>
-    <ul class="list-group">
-      <li class="list-group-item">Introduction to Superposition</li>
-      <li class="list-group-item">Problem Set 1 (PDF)</li>
-    </ul>
-  </div>
-
+    <div class="col-sm-6 side-panel">
+      <h4>Readings, Assignments</h4>
+      <ul class="list-group">
+        <li class="list-group-item">Introduction to Superposition</li>
+        <li class="list-group-item">Problem Set 1 (PDF)</li>
+      </ul>
+    </div>
+  {{/with}}
 </template>

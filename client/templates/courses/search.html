@@ -1,0 +1,40 @@
+<template name="searchModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Search courses</h4>
+                </div>
+
+                <div class="modal-body">
+                    {{> courseSearch}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="courseSearch">
+  {{> EasySearch.Input index=courseIndex attributes=inputAttributes}}
+
+  <div class="row">
+    {{#EasySearch.Each index=courseIndex }}
+      {{> courseItem}}
+    {{/EasySearch.Each}}
+  </div>
+
+  {{> EasySearch.LoadMore index=courseIndex attributes=loadMoreAttr}}
+
+  {{#EasySearch.IfNoResults index=courseIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+
+
+
+</template>

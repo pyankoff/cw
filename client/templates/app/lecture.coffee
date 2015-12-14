@@ -1,6 +1,17 @@
-Template.lecture.onCreated ->
-  window.onYouTubeIframeAPIReady = () ->
+Template.lecture.helpers
+  lecture: ->
     id = FlowRouter.getParam 'id'
+    Lectures.findOne {_id: id}
+  progress: ->
+    Session.get 'progress'
+
+Template.lecture.onCreated ->
+  self = this
+  id = FlowRouter.getParam 'id'
+  self.autorun ->
+    self.subscribe 'lecture', id
+
+  window.onYouTubeIframeAPIReady = () ->
     Meteor.autorun ->
       lecture = Lectures.findOne id
       @player = new YT.Player "player", {
@@ -13,12 +24,3 @@ Template.lecture.onCreated ->
     Session.set 'progress',
         percentage @player?.getCurrentTime() / @player?.getDuration()
   , 3000
-
-Template.lecture.helpers
-  progress: ->
-    Session.get 'progress'
-
-Template.lecture.onCreated ->
-  self = this
-  self.autorun ->
-    self.subscribe 'all'

@@ -16,3 +16,21 @@
     text-align: center;
   }
 }
+
+#signup-banner {
+  position: fixed;
+  height: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #57d58d;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 1.5em;
+    margin: 0;
+  }
+}

@@ -3,18 +3,6 @@ Template.coursePage.helpers
     id = FlowRouter.getParam 'id'
     Courses.findOne(id)
 
-Template.progress.helpers
-  progress: ->
-    count = 0
-    for i, lecture of @lectures
-      done = Meteor.user().profile.done[lecture.id]
-      n = _.filter done, (x) ->
-          x
-        .length
-      count += n
-
-    percentage(count/(@lectures.length*3)) if count > 0
-
 Template.lectureItem.helpers
   videoDone: ->
     "checked" if Meteor.user().profile.done[@id]?.video
@@ -34,4 +22,5 @@ Template.lectureItem.events
 Template.coursePage.onCreated ->
   self = this
   self.autorun ->
-    self.subscribe 'all'
+    id = FlowRouter.getParam 'id'
+    self.subscribe 'course', id
