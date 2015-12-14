@@ -5,7 +5,14 @@ Template.lecture.helpers
     id = FlowRouter.getParam 'id'
     Lectures.findOne {_id: id}
   progress: ->
-    Session.get 'progress'
+    progress = Session.get 'progress'
+    if progress > 0.95
+      field = 'profile.done.' + @_id + '.video'
+      set = {}
+      set[field] = true
+      Meteor.users.update Meteor.userId(), $set: set
+
+    percentage progress
 
 Template.lecture.onCreated ->
   self = this
@@ -24,8 +31,9 @@ Template.lecture.onCreated ->
   YT.load()
   progressMonitor = Meteor.setInterval ->
     Session.set 'progress',
-        percentage self.player?.getCurrentTime() / self.player?.getDuration()
+        self.player?.getCurrentTime() / self.player?.getDuration()
   , 3000
 
 Template.lecture.onDestroyed ->
   Meteor.clearInterval progressMonitor
+  Session.set 'progress', 0

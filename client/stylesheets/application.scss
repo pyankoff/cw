@@ -13,6 +13,35 @@ $padding: 16px;
   padding-bottom: $banner-height;
 }
 
+.course-title {
+  margin-bottom: $padding;
+  .btn {
+    width: 100%;
+  }
+}
+
+.icons-row {
+  margin-bottom: $padding;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media (min-width: 768px) {
+  .course-title {
+    display: table;
+    width: 100%;
+    .col-xs-12 {
+      display: table-cell;
+      float: none;
+      vertical-align: middle;
+    }
+  }
+}
+
+.course-info {
+  margin-bottom: $padding;
+}
+
 .content {
   display: table;
   width: 100%;
@@ -120,4 +149,8 @@ $padding: 16px;
   & > fieldset {
     display: none;
   }
+}
+
+.lecture-title {
+  display: inline-block;
 }

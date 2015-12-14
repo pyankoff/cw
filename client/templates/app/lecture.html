@@ -1,13 +1,16 @@
 <template name="lecture">
   {{#with lecture}}
-    <h3>{{name}}</h3>
-    <div class="col-sm-6">
+    <button type="button" class="btn btn-default" onclick="history.back(-1)">
+       « Back
+    </button>
+    <h3 class="lecture-title">{{name}}</h3>
+    <div class="col-sm-8">
       <div id="player"></div>
       <div>
         Progress: {{progress}}
       </div>
     </div>
-    <div class="col-sm-6 side-panel">
+    <div class="col-sm-4 side-panel">
       <h4>Readings, Assignments</h4>
       <ul class="list-group">
         <li class="list-group-item">Introduction to Superposition</li>

@@ -4,31 +4,39 @@ Template.coursePage.helpers
   course: ->
     id = FlowRouter.getParam 'id'
     Courses.findOne(id)
-
-Template.lectureItem.helpers
-  videoDone: ->
-    "checked" if Meteor.user()?.profile.done[@id]?.video
-  readingDone: ->
-    "checked" if Meteor.user()?.profile.done[@id]?.reading
-  exerciseDone: ->
-    "checked" if Meteor.user()?.profile.done[@id]?.exercise
-
-Template.lectureItem.events
-  "change input[type='checkbox']": (e) ->
-    if Meteor.user()
-      field = 'profile.done.' + @id + '.' + e.target.name
-      set = {}
-      set[field] = e.target.checked
-      Meteor.users.update Meteor.userId(), $set: set
+  isLearning: ->
+    _.contains Meteor.user()?.profile?.courses, @_id
+  sectionList: ->
+    section = FlowRouter.getParam 'section'
+    if section
+      'assetList'
     else
-      swal {
-          title: "Sign up to save your progress",
-          html: true,
-          text: Blaze.toHTMLWithData(Template.atForm, {state: 'signUp'}),
-          type: "info",
-          showConfirmButton: false
-        }
+      'lectureList'
 
+Template.assetList.helpers
+  assets: ->
+    section = FlowRouter.getParam 'section'
+    _.filter @assets, (x) -> x.type is section
+
+
+
+
+Template.coursePage.events
+  'click .course-title .btn-success': (e) ->
+    if Meteor.userId()
+      Meteor.users.update Meteor.userId(),
+      $addToSet:{
+        'profile.courses': @_id
+      }
+      Bert.alert 'Course added to your list', 'success'
+    else
+      showSignup()
+  'click .course-title .btn-default': (e) ->
+    Meteor.users.update Meteor.userId(),
+    $pull:{
+      'profile.courses': @_id
+    }
+    Bert.alert 'Course removed from your list', 'info'
 
 Template.coursePage.onCreated ->
   self = this
@@ -76,3 +84,4 @@ Template.coursePage.onRendered ->
 
 Template.coursePage.onDestroyed ->
   tour.end()
+  swal.close()

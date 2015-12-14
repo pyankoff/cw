@@ -1,0 +1,16 @@
+<template name="lectureItem">
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-xs-6 col-sm-8">
+        <a href="{{pathFor 'lecture' id=id}}">{{name}}</a>
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        <div class="content">
+          <span><input name="video" type="checkbox" {{videoDone}} /></span>
+          <span><input name="reading" type="checkbox" {{readingDone}} /></span>
+          <span><input name="exercise" type="checkbox" {{exerciseDone}} /></span>
+        </div>
+      </div>
+    </div>
+  </li>
+</template>
