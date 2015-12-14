@@ -1,12 +1,16 @@
 <template name="courseItem">
-  <div class="col-xs-2 col-sm-3 col-md-2">
-    {{#if __originalId}}
-      <a href="{{pathFor 'course' id=__originalId}}">{{name}}</a>
-    {{else}}
-      <a href="{{pathFor 'course' id=_id}}">{{name}}</a>
-    {{/if}}
-    {{#if signedUp}}
-      {{> progress}}
-    {{/if}}
+  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <a href="{{pathFor 'course' id=courseId}}">
+      <div class="thumbnail">
+        <img src="{{img}}" class="img-responsive" alt="{{name}}">
+        <div class="caption">
+          <p>{{name}}</p>
+          {{#if signedUp}}
+            {{> progress}}
+          {{/if}}
+          <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+        </div>
+      </div>
+    </a>
   </div>
 </template>

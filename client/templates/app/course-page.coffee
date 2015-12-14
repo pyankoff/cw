@@ -1,3 +1,5 @@
+tour =
+
 Template.coursePage.helpers
   course: ->
     id = FlowRouter.getParam 'id'
@@ -13,10 +15,19 @@ Template.lectureItem.helpers
 
 Template.lectureItem.events
   "change input[type='checkbox']": (e) ->
-    field = 'profile.done.' + @id + '.' + e.target.name
-    set = {}
-    set[field] = e.target.checked
-    Meteor.users.update Meteor.userId(), $set: set
+    if Meteor.user()
+      field = 'profile.done.' + @id + '.' + e.target.name
+      set = {}
+      set[field] = e.target.checked
+      Meteor.users.update Meteor.userId(), $set: set
+    else
+      swal {
+          title: "Sign up to save your progress",
+          html: true,
+          text: Blaze.toHTMLWithData(Template.atForm, {state: 'signUp'}),
+          type: "info",
+          showConfirmButton: false
+        }
 
 
 Template.coursePage.onCreated ->
@@ -27,7 +38,6 @@ Template.coursePage.onCreated ->
 
 Template.coursePage.onRendered ->
   tour = new Tour {
-  storage: false,
   template: "<div class='popover tour'>
   <div class='arrow'></div>
   <h3 class='popover-title'></h3>
@@ -60,6 +70,9 @@ Template.coursePage.onRendered ->
   ]}
 
   Meteor.setTimeout ->
-    tour.init(true)
-    tour.start(true)
+    tour.init()
+    tour.start()
   , 300
+
+Template.coursePage.onDestroyed ->
+  tour.end()

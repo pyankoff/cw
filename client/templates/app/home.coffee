@@ -9,5 +9,5 @@ Template.home.events
 Template.home.onCreated ->
   self = this
   self.autorun ->
-    courseIds = Meteor.user().profile.courses
+    courseIds = Meteor.user()?.profile.courses
     self.subscribe 'courses', courseIds
